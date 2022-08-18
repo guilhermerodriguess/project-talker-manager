@@ -10,6 +10,19 @@ const { tokenValidation,
 
 const talkerRouter = Router();
 
+talkerRouter.get('/search', 
+        tokenValidation, 
+        searchValidation,
+        async (req, res) => {
+        console.log(req.query.q);
+        const nameSearch = req.query.q;
+        const data = await readFile();
+        const searchInput = data.filter((person) => person.name.includes(nameSearch));
+        if (searchInput) {
+            return res.status(200).json(searchInput);
+        }
+   });
+
 talkerRouter.get('/', async (req, res) => {
     try {
         const data = await readFile();
@@ -71,7 +84,6 @@ talkerRouter.get('/', async (req, res) => {
    console.log(newPerson);
    if (newPerson !== null || newPerson !== undefined) {
        const newValue = { id: newPerson.id, name, age, talk: { watchedAt, rate } };
-       // const teste = [...data, newValue];
        writeFIle([newValue]);
        return res.status(200).json(newValue);
    }
