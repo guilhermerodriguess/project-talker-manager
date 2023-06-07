@@ -28,7 +28,7 @@ Before running the application, make sure you have the following tools installed
 - Clone the repository:
 
   ```
-  git clone git@github.com:your-username/project-talker-manager.git
+  git clone git@github.com:guilhermerodriguess/project-talker-manager.git
   ```
 
 ### Running the Application without Containers
